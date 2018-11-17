@@ -1,24 +1,24 @@
 import java.util.ArrayList;
 
-public class PianoSheet{
-	int madi_number;
+public class PianoSheet {
+	int barNum;
 	double tempo;
-	double total_second;
+	double totalSecond;
 	ArrayList<PianoBar> barList = new ArrayList<>();
 
-    public PianoSheet(int madi_number, double tempo, double total_second, ArrayList<PianoBar> barList) {
-        this.madi_number = madi_number;
+    public PianoSheet(int barNum, double tempo, double totalSecond, ArrayList<PianoBar> barList) {
+        this.barNum = barNum;
         this.tempo = tempo;
-        this.total_second = total_second;
+        this.totalSecond = totalSecond;
         this.barList = barList;
     }
 
-    public int getMadi_number() {
-        return madi_number;
+    public int getBarNum() {
+        return barNum;
     }
 
-    public void setMadi_number(int madi_number) {
-        this.madi_number = madi_number;
+    public void setBarNum(int barNum) {
+        this.barNum = barNum;
     }
 
     public double getTempo() {
@@ -29,12 +29,12 @@ public class PianoSheet{
         this.tempo = tempo;
     }
 
-    public double getTotal_second() {
-        return total_second;
+    public double getTotalSecond() {
+        return totalSecond;
     }
 
-    public void setTotal_second(double total_second) {
-        this.total_second = total_second;
+    public void setTotalSecond(double totalSecond) {
+        this.totalSecond = totalSecond;
     }
 
     public ArrayList<PianoBar> getBarList() {
