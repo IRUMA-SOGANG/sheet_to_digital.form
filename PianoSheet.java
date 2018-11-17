@@ -1,24 +1,14 @@
-import java.util.ArrayList;
+import sun.misc.Queue;
 
 public class PianoSheet {
-	int barNum;
 	double tempo;
 	double totalSecond;
-	ArrayList<PianoBar> barList = new ArrayList<>();
+	Queue<PianoBar> barList = new Queue<>();
 
-    public PianoSheet(int barNum, double tempo, double totalSecond, ArrayList<PianoBar> barList) {
-        this.barNum = barNum;
+    public PianoSheet(double tempo, double totalSecond, Queue<PianoBar> barList) {
         this.tempo = tempo;
         this.totalSecond = totalSecond;
         this.barList = barList;
-    }
-
-    public int getBarNum() {
-        return barNum;
-    }
-
-    public void setBarNum(int barNum) {
-        this.barNum = barNum;
     }
 
     public double getTempo() {
@@ -37,11 +27,11 @@ public class PianoSheet {
         this.totalSecond = totalSecond;
     }
 
-    public ArrayList<PianoBar> getBarList() {
+    public Queue<PianoBar> getBarList() {
         return barList;
     }
 
-    public void setBarList(ArrayList<PianoBar> barList) {
+    public void setBarList(Queue<PianoBar> barList) {
         this.barList = barList;
     }
 }
