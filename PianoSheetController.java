@@ -1,5 +1,7 @@
 public class PianoSheetController extends PianoSheet {
-
+	
+	//** Functions we need to make for the MusicSheet **//
+	
     public PianoSheetController(PianoSheet sheet) {
         this = sheet;
     }
@@ -8,13 +10,34 @@ public class PianoSheetController extends PianoSheet {
     public PianoBar getNextBar() {
         nextBar = getBarList().poll();
 		
+		if (nextBar != null){
+		//If there exists next Key Element 
+					
+		}else{
+		//If there does not exists next Key Element
+			
+		}
+	}
+			
+	//Functino#2 : Brings the Sound File (.wav) 
+	public PianoBar getSoundFile(){
+		
+	}
+	
+	
+	//Function#3 : Show Fingering Number
+	public PianoBar getFingerNumber(){
+
 	}
 
-	//Functino#2 : Bring the Sound File (.wav) 
+	//Function#4 : Show Fingering Handtype
+	public PianoBar getFingerHand(){
+		
+	}
 	
+	//Function#X : Tempo setting
+	public PianoBar tempoSetting(){
+		
+	}
 	
-	//Function#3 : Tempo setting
-	
-	
-	//Function#4 : 
 }
