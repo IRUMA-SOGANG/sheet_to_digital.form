@@ -4,10 +4,17 @@ public class PianoSheetController extends PianoSheet {
         this = sheet;
     }
 
+	//Function#1 : Read Next Key Element -> Both right and left hand
     public PianoBar getNextBar() {
         nextBar = getBarList().poll();
-        if (nextBar != null) {
-            
-        }
-    }
+		
+	}
+
+	//Functino#2 : Bring the Sound File (.wav) 
+	
+	
+	//Function#3 : Tempo setting
+	
+	
+	//Function#4 : 
 }
