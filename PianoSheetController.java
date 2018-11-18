@@ -18,26 +18,20 @@ public class PianoSheetController extends PianoSheet {
 			
 		}
 	}
-			
-	//Functino#2 : Brings the Sound File (.wav) 
-	public PianoBar getSoundFile(){
+	//Functino#2 : Brings the Sound File (.wav) -> We don't think about this here 
 		
-	}
-	
-	
 	//Function#3 : Show Fingering Number
 	public PianoBar getFingerNumber(){
-
-	}
-
+										
+	}		
+		
 	//Function#4 : Show Fingering Handtype
 	public PianoBar getFingerHand(){
 		
-	}
-	
+	}	
+		
 	//Function#X : Tempo setting
 	public PianoBar tempoSetting(){
 		
 	}
-	
 }
