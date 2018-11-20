@@ -4,7 +4,7 @@ public class PianoSheet {
 	double tempo;
 	double totalSecond;
 	Queue<PianoBar> barList = new Queue<>();
-
+	
     public PianoSheet(double tempo, double totalSecond, Queue<PianoBar> barList) {
         this.tempo = tempo;
         this.totalSecond = totalSecond;

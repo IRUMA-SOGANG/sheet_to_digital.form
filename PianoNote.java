@@ -2,8 +2,13 @@ import java.util.ArrayList;
 
 public class PianoNote {
 	ArrayList<Key> keyList;
+	//** KeyList **//
+	//1. sound
+	//2. octave
+	//3. die(#)
+	//4. isDown
 	int durationCount;
-	int color;
+	//int color;
 	int fingerNumber;
 
     public PianoNote(ArrayList<Key> keyList, int durationCount, int color, int fingerNumber) {

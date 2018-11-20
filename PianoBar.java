@@ -1,11 +1,13 @@
 import sun.misc.Queue;
 
 public class PianoBar {
-	int fingerCount;
 
+	//** ADD - #1**//
+	int fingerCount;
+	
 	Queue<PianoNote> rightQueue = new Queue<>();
 	Queue<PianoNote> leftQueue = new Queue<>();
-
+	
     public PianoBar(int fingerCount, Queue<PianoNote> rightQueue, Queue<PianoNote> leftQueue) {
         this.fingerCount = fingerCount;
         this.rightQueue = rightQueue;
@@ -35,4 +37,5 @@ public class PianoBar {
     public void setLeftQueue(Queue<PianoNote> leftQueue) {
         this.leftQueue = leftQueue;
     }
+
 }
