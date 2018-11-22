@@ -3,50 +3,58 @@ public class PianoSheetController{
 
 	//** Functions we need to make for the MusicSheet **//
 	int noteIndex = 0;
-	boolean startFlag = false;
+	boolean startFlag = false, finishFlag = false;
 	PianoBar currentBar, nextBar;
 	PianoNote currentRightNote, currentLeftNote;
 	PianoNote nextRightNote, nextLeftNote;
 	int rightFingerNumber, leftFingerNumber;
 	//Function#1 : Read Next Key Element -> Both right and left hand
-
-	public PianoSheetController(PianoSheet sheet, boolean startFlagValue) {
+		
+	public PianoSheetController(PianoSheet sheet, boolean startInputFlag) {
 		this.sheet = sheet;
-		startFlag = startFlagValue;
-	}
-	if(startflag) {
-		getNextbar();
-	}
-
-	public PianoNote checkCorrentness(PianoNote this.sheet.barList.keyList[noteIndex], PianoNote currentNote){
+		startFlag = startInputFlag;
+	}	
+		
+	public Boolean PianoNoteController(PianoNote inputNote){
+		this.note = inputNote;
+	}	
+		
+	public Boolean checkCorrentness(PianoNote currentNote, PianoNote inputNote]){
 		//#1 - If Correct continue to next step
 		//#2 - If not correct do not continue next step
-		if(this.sheet.barList.keyList[noteIndex].sound  == currentNote.sound &&
-				this.sheet.barList.keyList[noteIndex].octave == currentNote.octave &&
-				this.sheet.barList.keyList[noteIndex].die    == currentNote.die){
-			getNextBar();				
+		if(inputNote.sound == currentNote.sound &&
+			inputNote.octave == currentNote.octave &&
+			inputNote.die == currentNote.die){
+			return true;
 		}else{
 			//Wrong Piano Key Pressed - Error pop out;
+			return false;
 		}
-	}
-
-	public PianoBar getNextBar() {
+	}	
+		
+	public Boolean getNextNote(){
+						
+	}	
+		
+	public Boolean getNextBar() {
 		if(startflag){
 			currentBar       = this.sheet.getBarList().poll();
 			nextBar          = this.sheet.getBarList().poll();
-
-			currentRightNote = currentBar.rightQueue.poll();
-			nextRightNote    = currentBar.rightQueue.poll();
-			rightFingerNumber= currentRightNote.keyList[noteIndex].fingerNumber;
-
-			currentLeftNote  = currentBar.leftQueue.poll();
-			nextLeftNote     = currentBar.leftQueue.poll();
-			leftFingerNumber = currentLeftNote.keyList[noteIndex].fingerNumber;
-			noteIndex++;
+			
+			/*
+			   currentRightNote = currentBar.rightQueue.poll();
+			   nextRightNote    = currentBar.rightQueue.poll();
+			   rightFingerNumber= currentRightNote.keyList[noteIndex].fingerNumber;
+			
+			   currentLeftNote  = currentBar.leftQueue.poll();
+			   nextLeftNote     = currentBar.leftQueue.poll();
+			   leftFingerNumber = currentLeftNote.keyList[noteIndex].fingerNumber;
+			   noteIndex++;
+			   */
 		}else{
 			if (currentBar.isEmpty()){
-				noteIndex = 0;	
-
+				noteIndex = 0;
+				currentBar = this.sheet.getBarList().poll();
 			}else{
 				//Call next Bar
 				currentBar = nextBar;
@@ -59,10 +67,17 @@ public class PianoSheetController{
 				currentLeftNote  = currentBar.leftQueue.poll();
 				nextLeftNote     = currentBar.leftQueue.poll();
 				leftFingerNumber = currentLeftNote.keyList[noteIndex].fingerNumber;
-				
+
 				noteIndex++;
 			}
 		}			
 	}	
-
+	if(starFlag){
+		while(!finishFlag){
+			correctRightNote = this.sheet.barList.getRightQueue().poll();
+			correctLeftNote  = this.sheet.barList.getLeftQueue().poll();
+			checkCorrentness(correctRightNote, correctLeftNote, inputNote);
+			noteIndex++;
+		}
+	}
 }
