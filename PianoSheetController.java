@@ -3,7 +3,7 @@ public class PianoSheetController{
 
 	//** Functions we need to make for the MusicSheet **//
 	int noteIndex = 0;
-	boolean startFlag = false, finishFlag = false;
+	boolean startFlag = false, barEmptyFlag = false, finishFlag = false;
 	PianoBar currentBar, nextBar;
 	PianoNote currentRightNote, currentLeftNote;
 	PianoNote nextRightNote, nextLeftNote;
@@ -14,8 +14,9 @@ public class PianoSheetController{
 		this.sheet = sheet;
 	}	
 
-	public Boolean PianoNoteController(PianoNote inputNote){
-		this.note = inputNote;
+	public Boolean PianoNoteController(PianoNote inputRightNote, PianoNote inputLeftNote){
+		this.rightNote = inputRightNote;
+		this.leftNote  = inputLeftNote;
 	}	
 
 	public Boolean checkCorrentness(PianoNote currentNote, PianoNote inputNote){
@@ -31,14 +32,24 @@ public class PianoSheetController{
 		}
 	}	
 
-	public PianoNote getNextNote(){
+	public PianoNote getNextRightNote(){
 		if(!currentBar.isEmpty()){
 			nextRightNote = currentBar.getRightQueue().poll();
-			nextLeftNote  = currentBar.getLeftQueue().poll();
 		}else{
+			barEmptyFlag = true;
 			return null;
 		}
 	}	
+
+	public PianoNote getNextLeftNote(){
+		if(!currentBar.isEmpty()){
+			nextLeftNote  = currentBar.getLeftQueue().poll();
+		}else{
+			barEmptyFlag = true;
+			return null;
+		}
+	}	
+
 
 	public PianoBar getNextBar() {
 		if(!this.sheet.getBarList().isEmpty()){
@@ -48,49 +59,33 @@ public class PianoSheetController{
 			finishFlag = true;
 			return null;
 		}
-
-		/*
-		   if(startflag){
-		   currentBar       = this.sheet.getBarList().poll();
-		   nextBar          = this.sheet.getBarList().poll();
-
-		   currentRightNote = currentBar.rightQueue.poll();
-		   nextRightNote    = currentBar.rightQueue.poll();
-		   rightFingerNumber= currentRightNote.keyList[noteIndex].fingerNumber;
-
-		   currentLeftNote  = currentBar.leftQueue.poll();
-		   nextLeftNote     = currentBar.leftQueue.poll();
-		   leftFingerNumber = currentLeftNote.keyList[noteIndex].fingerNumber;
-		   noteIndex++;
-		   }else{
-		   if (currentBar.isEmpty()){
-		   noteIndex = 0;
-		   currentBar = this.sheet.getBarList().poll();
-		   }else{
-		//Call next Bar
-		currentBar = nextBar;
-		nextBar    = this.sheet.getBarList().poll();
-
-		currentRightNote = currentBar.rightQueue.poll();
-		nextRightNote    = currentBar.rightQueue.poll();
-		rightFingerNumber= currentRightNote.keyList[noteIndex].fingerNumber;
-
-		currentLeftNote  = currentBar.leftQueue.poll();
-		nextLeftNote     = currentBar.leftQueue.poll();
-		leftFingerNumber = currentLeftNote.keyList[noteIndex].fingerNumber;
-
-		noteIndex++;
-		   }
-		   }
-		   */
-	}
-	if(startInputFlag){
-		startFlag = startInputFlag;
-	}else{
-		//Recursively get new sheet and new startFlag
-	}	
-	while(startFlag && !finishFlag){
-		currentBar = this.sheet.getBarList().poll();
-		
+	}			
+	while(!finishFlag){
+		//If there is leftover music bar to read
+		if(!startFlag && startInputFlag){
+			//When reading the sheet for the first time
+			if(this.sheet == null){
+				//If sheet data doesn't exists ** HELP **
+				//Message : "Please Download Music File"
+			}else{
+				startFlag        = startInputFlag;
+				currentBar       = getNextBar();
+				currentRightNote = getNextRightNote();
+				currentLeftNote  = getNextLeftNote();
+			}
+		}else{
+			if(checkCorrentness(this.inputLeftNote, currentLeftNote) &&
+					checkCorrentness(this.inputRightNote, currentRightNote)){
+				currentRightNote = getNextRightNote();
+				currentLeftNote  = getNextLeftNote();
+				if(barEmptyFlag){
+					currentBar   = getNextBar();
+					barEmptyFlag = false;
+				}
+			}else{
+				//Recursively get new inputNote ** HELP **
+				//Do Not Read Next Key Element
+			}
+		}
 	}
 }
