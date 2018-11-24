@@ -22,9 +22,9 @@ public class PianoSheetController{
 	public Boolean checkCorrentness(PianoNote currentNote, PianoNote inputNote){
 		//#1 - If Correct continue to next step
 		//#2 - If not correct do not continue next step
-		if(inputNote.sound == currentNote.sound &&
-				inputNote.octave == currentNote.octave &&
-				inputNote.die == currentNote.die){
+		if(inputNote.keyList.sound == currentNote.keyList.sound &&
+				inputNote.keyList.octave == currentNote.keyList.octave &&
+				inputNote.keyListdie == currentNote.keyList.die){
 			return true;
 		}else{
 			//Wrong Piano Key Pressed - Error pop out;
@@ -76,8 +76,16 @@ public class PianoSheetController{
 		}else{
 			if(checkCorrentness(this.inputLeftNote, currentLeftNote) &&
 					checkCorrentness(this.inputRightNote, currentRightNote)){
-				currentRightNote = getNextRightNote();
-				currentLeftNote  = getNextLeftNote();
+				if(currentRightNote.durationCount > 0){
+					currentRightNote.durationCount--;
+				}else{
+					currentRightNote = getNextRightNote();
+				}
+				if(currentLeftNote.durationCount > 0){
+					currentLeftNote.durationCount--;
+				}else{
+					currentLeftNote  = getNextLeftNote();
+				}
 				if(barEmptyFlag){
 					currentBar   = getNextBar();
 					barEmptyFlag = false;
